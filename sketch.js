@@ -1,41 +1,37 @@
-
-const saveButton = document.querySelector
-('button#save');
-const colorInput = document.querySelector
-('input#color');
-console.log(colorInput);
-
-let paintColor='#ff6347';
-colorInput.value = paintColor;
-
-
-
-
 function setup(){
-const canvas=createCanvas(500,500);
+angleMode(DEGREES);
+canvas =createCanvas(400,400);
 canvas.parent('sketch');
-background (40,0,150);
-saveButton.addEventListener('click',()=>{
-    save('image.png');
-});
-
-colorInput.addEventListener('input',()=>{
-    paintColor=colorInput.value;
-});
-
+background (127, 255, 174);
+button = createButton("PUSH");
+button.mouseClicked(moveButton);
 }
 
 function draw(){
+background(50,205,50);
+strokeWeight(8);
+stroke("green"); 
+let end =map (mouseX,0,width,0,360);
+arc(200,200,100,100,0,end,OPEN);
+arc(310,200,100,100,0,end);
+push();
+strokeWeight(4);
+stroke("green");
+noFill();
+arc(90,200,100,100,0,end);
+arc(90,200,80,80,0,end);
+arc(90,200,60,60,0,end);
+arc(90,200,40,40,0,end);
+arc(90,200,20,20,0,end);
+pop(); 
 }
 
-function mouseDragged(){
-    fill(paintColor);
-    circle(mouseX, mouseY, 10);
-    line(pmouseX,pmouseY,mouseX,mouseY);
-    for(let i = 0; i<100; i++){
-    point(mouseX + random(-10,10),
-          mouseY + random(-10,10));
-    }
+ function mousePressed() {
+   fill(random(255), random(255), random(255), random(255));
+}
+
+function moveButton(){
+button.position(random(width),random(height));
 }
 
 
